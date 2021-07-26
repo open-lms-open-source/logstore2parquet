@@ -1,0 +1,19 @@
+# allow caching for faster deployment
+cache:
+    paths:
+        - website/node_modules/
+        - public/
+        - website/.cache/
+
+pages:
+    image: node:latest
+    stage: deploy
+    script:
+        - cd website
+        - yarn install
+        - yarn build:gitlab
+    artifacts:
+        paths:
+            - public
+    only:
+        - main
