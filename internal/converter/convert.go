@@ -22,7 +22,7 @@ type LogstoreRecord struct {
 	Target            string `parquet:"name=target, type=BYTE_ARRAY, convertedtype=UTF8, encoding=PLAIN_DICTIONARY"`
 	ObjectTable       string `parquet:"name=objecttable, type=BYTE_ARRAY, convertedtype=UTF8, encoding=PLAIN_DICTIONARY"`
 	ObjectID          int64  `parquet:"name=objectid, type=INT64"`
-	CRUD              string `parquet:"name=crud, type=FIXED_LEN_BYTE_ARRAY, length=1"`
+	CRUD              string `parquet:"name=crud, type=BYTE_ARRAY, convertedtype=UTF8, encoding=PLAIN_DICTIONARY"`
 	EduLevel          int64  `parquet:"name=edulevel, type=INT32"`
 	ContextID         int64  `parquet:"name=contextid, type=INT64"`
 	ContextLevel      int64  `parquet:"name=contextlevel, type=INT64"`
@@ -33,8 +33,8 @@ type LogstoreRecord struct {
 	Anonymous         int64  `parquet:"name=anonymous, type=INT32"`
 	Other             string `parquet:"name=other, type=BYTE_ARRAY, convertedtype=UTF8"`
 	TimeCreated       int64  `parquet:"name=timecreated, type=INT64"`
-	Origin            string `parquet:"name=origin, type=FIXED_LEN_BYTE_ARRAY, length=10"`
-	IP                string `parquet:"name=ip, type=FIXED_LEN_BYTE_ARRAY, length=45"`
+	Origin            string `parquet:"name=origin, type=BYTE_ARRAY, convertedtype=UTF8, encoding=PLAIN_DICTIONARY"`
+	IP                string `parquet:"name=ip, type=BYTE_ARRAY, convertedtype=UTF8, encoding=PLAIN_DICTIONARY"`
 	RealUserID        int64  `parquet:"name=realuserid, type=INT64"`
 }
 
