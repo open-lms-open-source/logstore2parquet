@@ -10,6 +10,8 @@ import (
 
 // Command triggers the conversion process.
 func Command() *cobra.Command {
+	var table string
+
 	c := &cobra.Command{
 		Use:   "convert",
 		Short: "Convert a CSV",
@@ -24,10 +26,12 @@ func Command() *cobra.Command {
 			return nil
 		},
 		RunE: func(cmd *cobra.Command, args []string) error {
-			doConvert(args[0], args[1])
+			doConvert(table, args[0], args[1])
 			return nil
 		},
 	}
+
+	c.PersistentFlags().StringVarP(&table, "table", "t", "logstore_standard_log", "The source table being converted")
 
 	// Custom template to display our required args in the usage text.
 	c.SetUsageTemplate(`Usage:{{if .Runnable}}
@@ -37,7 +41,7 @@ Flags:
 {{.LocalFlags.FlagUsages | trimTrailingWhitespaces}}{{end}}{{if .HasAvailableInheritedFlags}}
 Global Flags:
 {{.InheritedFlags.FlagUsages | trimTrailingWhitespaces}}{{end}}
-  `)
+`)
 
 	return c
 }
