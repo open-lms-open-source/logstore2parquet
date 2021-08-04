@@ -14,8 +14,6 @@ TESTPKGS = $(shell env GO111MODULE=on $(GO) list -f \
 			$(PKGS))
 BIN      = $(CURDIR)/bin
 
-GOVERSION = $(shell go version | awk '{print $$3;}')
-
 GO      = go
 TIMEOUT = 15
 V = 0
@@ -28,14 +26,14 @@ export GO111MODULE=on
 
 $(MODULE)-linux_amd64: fmt lint | $(BIN) ; $(info $(M) building executable…) @ ## Build binary (linux_amd64)
 	$Q CGO_ENABLED=0 GOOS=linux GOARCH=amd64 $(GO) build \
-			-ldflags '-X $(MODULE)/internal/version.Version=$(VERSION) -X $(MODULE)/internal/version.BuildDate=$(DATE) -X $(MODULE)/internal/version.GoVersion=$(GOVERSION)' \
+			-ldflags '-X $(MODULE)/internal/version.Version=$(VERSION) -X $(MODULE)/internal/version.BuildDate=$(DATE)' \
 			-o $(BIN)/l2p-linux_amd64 cmd/l2p/main.go
 
 .PHONY: all
 all: fmt lint | $(BIN) ; $(info $(M) building executable…) @ ## Build program binary
 	$Q $(GO) build \
 		-tags release \
-		-ldflags '-X $(MODULE)/internal/version.Version=$(VERSION) -X $(MODULE)/internal/version.BuildDate=$(DATE) -X $(MODULE)/internal/version.GoVersion=$(GOVERSION)' \
+		-ldflags '-X $(MODULE)/internal/version.Version=$(VERSION) -X $(MODULE)/internal/version.BuildDate=$(DATE)' \
 		-o $(BIN)/$(basename $(MODULE)) cmd/l2p/main.go
 
 .PHONY: build
