@@ -4,6 +4,7 @@ import "log"
 
 var tables = map[string]Table{
 	"logstore_standard_log": &LogstoreRecord{},
+	"context":               &ContextRecord{},
 }
 
 // Table is the interface implemented by all supported tables.

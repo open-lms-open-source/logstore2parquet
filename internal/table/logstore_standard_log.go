@@ -30,14 +30,14 @@ type LogstoreRecord struct {
 func (t *LogstoreRecord) parse(line []string) {
 	id, _ := strconv.ParseInt(line[0], 10, 64)
 	objectID, _ := strconv.ParseInt(line[6], 10, 64)
-	eduLevel, _ := strconv.ParseInt(line[8], 10, 64)
+	eduLevel, _ := strconv.ParseInt(line[8], 10, 32)
 	contextID, _ := strconv.ParseInt(line[9], 10, 64)
 	contextLevel, _ := strconv.ParseInt(line[10], 10, 64)
 	contextInstanceID, _ := strconv.ParseInt(line[11], 10, 64)
 	userID, _ := strconv.ParseInt(line[12], 10, 64)
 	courseID, _ := strconv.ParseInt(line[13], 10, 64)
 	relatedUserID, _ := strconv.ParseInt(line[14], 10, 64)
-	anonymous, _ := strconv.ParseInt(line[15], 10, 64)
+	anonymous, _ := strconv.ParseInt(line[15], 10, 32)
 	timeCreated, _ := strconv.ParseInt(line[17], 10, 64)
 	realUserID, _ := strconv.ParseInt(line[20], 10, 64)
 
