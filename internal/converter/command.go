@@ -10,6 +10,7 @@ import (
 
 // Command triggers the conversion process.
 func Command() *cobra.Command {
+	var schema string
 	var table string
 
 	c := &cobra.Command{
@@ -23,14 +24,24 @@ func Command() *cobra.Command {
 			if _, err := os.Stat(args[0]); err != nil {
 				return fmt.Errorf("cannot read input file")
 			}
+			if schema != "" {
+				if _, err := os.Stat(schema); err != nil {
+					return fmt.Errorf("cannot read schema file")
+				}
+			}
 			return nil
 		},
 		RunE: func(cmd *cobra.Command, args []string) error {
-			doConvert(table, args[0], args[1])
+			if schema != "" {
+				doConvertMD(schema, args[0], args[1])
+			} else {
+				doConvert(table, args[0], args[1])
+			}
 			return nil
 		},
 	}
 
+	c.PersistentFlags().StringVarP(&schema, "schema", "s", "", "Path to file defining the schema to use")
 	c.PersistentFlags().StringVarP(&table, "table", "t", "logstore_standard_log", "The source table being converted")
 
 	// Custom template to display our required args in the usage text.
