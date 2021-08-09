@@ -10,3 +10,4 @@ That's all it does right now!
 ## Features
 
 + Transform logstore_standard_log CSV files into Parquet
++ Transform arbitrary CSV files into Parquet when providing the schema
