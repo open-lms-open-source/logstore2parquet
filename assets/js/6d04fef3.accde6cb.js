@@ -1,0 +1,1 @@
+(self.webpackChunklogstore2parquet=self.webpackChunklogstore2parquet||[]).push([[298],{416:function(e){"use strict";e.exports=JSON.parse('{"allTagsPath":"/logstore2parquet/blog/tags","slug":"release","name":"release","count":3,"permalink":"/logstore2parquet/blog/tags/release"}')}}]);
